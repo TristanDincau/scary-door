@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+  position: relative;
+  height: 635px;
+  width: 1150px;
+  background: linear-gradient(135deg, orange 0%, white 50%);
+  float: right;
+}
+#web {
+  position: absolute;
+  left: 25%;
+  top: 10%;
+}
+#spider {
+  position: absolute;
+  left: 25%;
+  top: 10%;
+  animation: spiderBounce 6s ease-in-out infinite;
+}
+#boo-text {
+  left: 40%;
+  text-align: center;
+}
+#top-words {
+  position: absolute;
+  left: 23%;
+  bottom: 91%;
+  font-family: 'Creepster', cursive;
+}
+#name-input {
+  position: absolute;
+  left: 25%;
+  top: 6%;
+}
+#ghoul {
+  position: absolute;
+  left: 32%;
+  top: 10%;
+  animation: rockingGhoul 5s ease-in-out infinite;
+}
+#name-button {
+  position: absolute;
+  left: 41%;
+  top: 6%;
+}
+#left-door {
+position: absolute;
+  left: 10%;
+  width: 100px;
+  height: 200px;
+}
+#choose-left {
+  position: absolute;
+  top: 95%;
+  left: 11%;
+}
+#right-door {
+  position: absolute;
+  left: 60%;
+  text-align: center;
+  width: 100px;
+  height: 200px;
+}
+#choose-right {
+  position: absolute;
+  top: 95%;
+  left: 60%;
+}
+#hello-message{
+  position: absolute;
+  font-family: 'Creepster', cursive;
+  left: 30%;
+  top: 2%;
+}
+#boo {
+  position: absolute;
+  top: 35%;
+  left: 17%;
+  font-family: 'Creepster', cursive;
+  display: none;
+}
+
+@keyframes rockingGhoul {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate (0deg);
+  }
+}
+@keyframes spiderBounce {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+    </style>
+</head>
+<body>
+    <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Merriweather:wght@300&family=Slabo+27px&family=Stint+Ultra+Condensed&display=swap" rel="stylesheet">
+</head>
+<div class="container">
+  <h1 id="top-words"> WELCOME BOYS AND GHOULS! </h1>
+  <img id="web" src="https://westmeccoding.github.io/spider-animation/halloween-spider-web.png" width=50 height=100/>
+  <img id="spider" src="https://westmeccoding.github.io/spider-animation/halloween-spider-noweb.png" width=50 height=100 />
+  <img id="ghoul" src="https://github.com/WestMecCoding/Scary_door_Choice/blob/main/crypt-keeper.png?raw=true" width="150" height="150" />
+  <input id="name-input"type="text" placeholder="type your name" />
+  <button type="button" id="name-button" onclick="getName()">Say Hello</button>
+  <h1 id="hello-message"></h1>
+  <div id="boo"> 
+    <div id="boo-text">
+    <p>There are two doors. Behind one is a monster, behind the other</p>
+    <p>is a prize! Choose wisely!</p>
+    </div>
+    <div class="door-container">
+  <img id="left-door" src="https://github.com/WestMecCoding/Scary_door_Choice/blob/main/jack-halloween-door.jpg?raw=true">
+      <button id="choose-left" onclick="chooseRandomDoor('left')">Choose Left</button>
+    </div>
+    <div class="door-container">
+      <img id="right-door" src="https://github.com/WestMecCoding/Scary_door_Choice/blob/main/jack-halloween-door.jpg?raw=true">
+      <button id="choose-right" onclick="chooseRandomDoor('right')">Choose Right</button>
+    </div>
+  </div>
+</div>
+    <script>
+        const nameButton = document.getElementById('name-button');
+const boo = document.getElementById('boo');
+const helloMessage = document.getElementById('hello-message');
+const nameInput = document.getElementById('name-input');
+const leftDoor = document.getElementById('left-door');
+const rightDoor = document.getElementById('right-door');
+let greenMonsterSrc = "https://content.mycutegraphics.com/graphics/monster/silly-monster.png";
+let treasureChestSrc = "https://clipartspub.com/images/chest-clipart-closed-7.png";
+
+function getName() {
+  const playerName = nameInput.value;
+  console.log(playerName);
+  helloMessage.textContent = "hello " + playerName;
+  boo.style.display = "block";
+  nameInput.style.display = "none";
+  nameButton.style.display = "none";
+}
+
+function chooseRandomDoor(selection) {
+  let correctDoor = Math.floor(Math.random() * 2) + 1;
+  if (correctDoor == 1 && selection == "left") {
+    leftDoor.src = treasureChestSrc;
+    rightDoor.src = greenMonsterSrc;
+      } else if (correctDoor == 2 && selection == "right") {
+    rightDoor.src = treasureChestSrc;
+    leftDoor.src = greenMonsterSrc;
+  } else {
+    leftDoor.src = treasureChestSrc;
+    rightDoor.src = greenMonsterSrc;
+  }
+}
+    </script>
+</body>
+</html>
